@@ -18,4 +18,20 @@ public class PersonService {
 
         return personRepository.findAllPerson();
     }
+
+    public Person addPerson(Person person) {
+        personRepository.addPerson(person);
+        return person;
+    }
+
+
+
+    public Person updatePerson(Person personToUpdate) {
+        return personRepository.updatePerson(personToUpdate);
+    }
+
+    public Person deletePerson(Person person) {
+        return personRepository.deletePerson(person);
+    }
+
 }
