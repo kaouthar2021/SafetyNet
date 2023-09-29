@@ -12,21 +12,20 @@ public class PersonRepository {
     @Autowired
     private DataRepository dataRepository;
 
-    private List<Person> personList = new ArrayList<Person>();
 
     public List<Person> findAllPerson() {
         return this.dataRepository.getData().getPersons();
     }
 
     public Person addPerson(Person person) {
-        personList.add(person);
+        this.dataRepository.getData().getPersons() .add(person);
         return person;
 
     }
 
-    public Person updatePerson(Person personToUpdate) {
-        for (Person p : personList) {
-            if (p.getFirstName().equals(personToUpdate.getFirstName()) && p.getLastName().equals(personToUpdate.getLastName()))
+    public Person updatePerson(String firstName, String lastName ,Person personToUpdate) {
+        for (Person p :  this.dataRepository.getData().getPersons()) {
+            if (p.getFirstName().equals(firstName) && p.getLastName().equals(lastName))
             {
                 p.setAddress(personToUpdate.getAddress());
                 p.setCity(personToUpdate.getCity());
@@ -40,13 +39,14 @@ public class PersonRepository {
 
 
 
-    public Person deletePerson(Person person) {
-        for (Person p : personList) {
-            if (p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName())) {
-                personList.remove(p);
+    public void deletePerson(String firstName, String lastName) {
+        Person personToDelete=null;
+        for (Person p :  this.dataRepository.getData().getPersons()) {
+            if (p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)) {
+               personToDelete=p;
             }
         }
-        return person;
+        this.dataRepository.getData().getPersons().remove(personToDelete);
     }
 
 

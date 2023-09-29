@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("SafetyNet")
+@RequestMapping("SafetyNet/persons")
 public class PersonController {
 
     @Autowired
@@ -20,14 +20,14 @@ public class PersonController {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
-    @GetMapping("/persons")
+    @GetMapping()
     public List<Person> getAllPersons() {
 
         return personService.getAllPersons();
     }
 
     @ResponseBody
-    @PostMapping("/person")
+    @PostMapping()
     public ResponseEntity<Person> addPerson(@RequestBody Person person) {
 
         personService.addPerson(person);
@@ -37,18 +37,18 @@ public class PersonController {
     }
 
 
-    @PutMapping("/person")
-    public ResponseEntity<Person> updatePerson(@RequestBody Person person) {
+    @PutMapping()
+    public ResponseEntity<Person> updatePerson( @RequestParam String  firstName , @RequestParam String lastName ,@RequestBody Person person) {
         logger.info("updating person {}", person);
-        Person personUpdated = personService.updatePerson(person);
+        Person personUpdated = personService.updatePerson(firstName,lastName,person);
         return new ResponseEntity<Person>(personUpdated, HttpStatus.OK);
     }
 
-    @DeleteMapping("/person")
-    public ResponseEntity<Person> deletePerson(Person person) {
-        logger.info("deleting person {} {}", person);
-        Person personDeleted = personService.deletePerson(person);
-        return new ResponseEntity<Person>(personDeleted, HttpStatus.GONE);
+    @DeleteMapping()
+    public ResponseEntity<Void> deletePerson(@RequestParam String  firstName , @RequestParam String lastName) {
+        logger.info("deleting person {} {}", firstName,lastName);
+         personService.deletePerson(firstName,lastName);
+         return new ResponseEntity<>( HttpStatus.GONE);
     }
 
 

@@ -26,12 +26,12 @@ public class PersonService {
 
 
 
-    public Person updatePerson(Person personToUpdate) {
-        return personRepository.updatePerson(personToUpdate);
+    public Person updatePerson( String firstName, String lastName,Person personToUpdate) {
+        return personRepository.updatePerson(firstName, lastName, personToUpdate);
     }
 
-    public Person deletePerson(Person person) {
-        return personRepository.deletePerson(person);
+    public void deletePerson(String firstName, String lastName) {
+         personRepository.deletePerson(firstName, lastName);
     }
 
 }
