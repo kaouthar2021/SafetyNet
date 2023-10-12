@@ -1,9 +1,7 @@
 package com.project.SafetyNet.controller;
 
-import com.project.SafetyNet.Repository.FirestationRepository;
-import com.project.SafetyNet.Service.FirestationService;
+import com.project.SafetyNet.service.FirestationService;
 import com.project.SafetyNet.model.Firestation;
-import com.project.SafetyNet.model.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +32,26 @@ public class FirestationController {
         return new ResponseEntity<>(firestation, HttpStatus.CREATED);
 
     }
+    @PutMapping()
+    public ResponseEntity<Firestation> updateFirestation(@RequestParam String  address , @RequestBody Firestation firestation)  {
+        logger.info("updating firestation {}", firestation);
+        Firestation updateFirestation = firestationService.updateFirestation(address,firestation);
+        return new ResponseEntity<Firestation>(updateFirestation, HttpStatus.OK);
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Void> deleteFirestation(@RequestParam String  address)  {
+        logger.info("deleting firestation {} ", address);
+        firestationService.deleteFirestation(address);
+        return new ResponseEntity<>( HttpStatus.GONE);
+    }
+
+    @GetMapping("/fire")
+    public List<Firestation> findByAddress(@RequestParam String address){
+        logger.info("getting station of {}", address);
+      return   firestationService.findByAddress(address);
+     // return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }

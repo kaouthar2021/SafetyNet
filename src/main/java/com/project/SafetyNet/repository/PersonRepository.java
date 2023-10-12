@@ -1,7 +1,9 @@
-package com.project.SafetyNet.Repository;
+package com.project.SafetyNet.repository;
+import com.project.SafetyNet.controller.dto.PersonSummray;
 import com.project.SafetyNet.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,5 +51,13 @@ public class PersonRepository {
         this.dataRepository.getData().getPersons().remove(personToDelete);
     }
 
-
+//    public PersonSummray getPersonSummary(){
+//        List<PersonSummray>personSummrayList=new ArrayList<>();
+//        List<Person>personList=this.dataRepository.getData().getPersons();
+//        for (Person person:personList){
+//            personSummrayList.add(person.getFirstName());
+//
+//        }
+//        return ;
+//    }
 }

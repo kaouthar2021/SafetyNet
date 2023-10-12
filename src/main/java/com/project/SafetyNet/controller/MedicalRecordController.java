@@ -1,6 +1,6 @@
 package com.project.SafetyNet.controller;
 
-import com.project.SafetyNet.Service.MedicalRecordService;
+import com.project.SafetyNet.service.MedicalRecordService;
 import com.project.SafetyNet.model.MedicalRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,5 +44,16 @@ public class MedicalRecordController {
         logger.info("deleting medicalRecord {} {}", firstName,lastName);
         medicalRecordService.deleteMedicalRecord(firstName,lastName);
         return new ResponseEntity<>( HttpStatus.GONE);
+    }
+    @GetMapping("/medical")
+    public List<Object> findByFirstLastName( @RequestParam String  firstName , @RequestParam String lastName) {
+        logger.info("get medicalRecord {} {}", firstName,lastName);
+      return   medicalRecordService.findByFirstLastName(firstName,lastName);
+       // return new ResponseEntity<>( HttpStatus.OK);
+    }
+    @GetMapping("/age")
+    public int calculateAgePerson(@RequestParam String birthdate){
+        logger.info("calculate age {}",birthdate);
+        return medicalRecordService.calculateAgePerson(birthdate);
     }
 }
