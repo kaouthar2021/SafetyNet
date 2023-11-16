@@ -1,8 +1,5 @@
 package com.project.SafetyNet.service;
-import com.project.SafetyNet.controller.dto.CoveredPeople;
-import com.project.SafetyNet.controller.dto.PersonSummray;
 import com.project.SafetyNet.exception.RessourceNotFoundException;
-import com.project.SafetyNet.model.Firestation;
 import com.project.SafetyNet.repository.FirestationRepository;
 import com.project.SafetyNet.repository.MedicalRecordRepository;
 import com.project.SafetyNet.repository.PersonRepository;
@@ -13,8 +10,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Data
 @Service
@@ -26,14 +27,16 @@ public class PersonService {
     @Autowired
     private FirestationRepository firestationRepository;
     @Autowired
+    private FirestationService firestationService;
+    @Autowired
+    private  MedicalRecordService medicalRecordService;
+    @Autowired
     static final Logger logger = LogManager.getLogger(PersonService.class);
 
 
     public List<Person> getAllPersons() {
-
         return personRepository.findAllPerson();
     }
-
     public Person addPerson(Person person) throws RessourceNotFoundException {
         if(person !=null) {
             personRepository.addPerson(person);
@@ -45,9 +48,6 @@ public class PersonService {
         }
         return person;
     }
-
-
-
     public Person updatePerson( String firstName, String lastName,Person personToUpdate) throws RessourceNotFoundException {
         Person result;
         if (firstName != null && lastName != null) {
@@ -56,8 +56,6 @@ public class PersonService {
             logger.error("the" + personToUpdate + "don't exist");
             throw new RessourceNotFoundException("the person to update don't exist");
         }
-
-
         return result;
     }
 
@@ -68,43 +66,21 @@ public class PersonService {
             logger.error("the person don't exist");
         throw new RessourceNotFoundException("the person to delete don't exist");
 
-
     }
-
-
-
-    public ArrayList<Object> getEmailsByCity(String city) {
-
-        ArrayList<Object> listEmailsByCity = new ArrayList<Object>();
-        List<Person> listPersons = personRepository.findAllPerson();
-        for (Person person : listPersons) {
-            if (person.getCity().equals(city)) {
-                listEmailsByCity.add(person.getEmail());
+    public List<String> getFamilyMembers(String firstName, String lastName) {
+        int i = 0;
+         List<Person> listPersons = personRepository.findAllPerson();
+        List<String> family = new ArrayList<>();
+        while (i < listPersons.size()) {
+            if (listPersons.get(i).getLastName().equals(lastName) && !listPersons.get(i).getFirstName().equals(firstName)) {
+                family.add(listPersons.get(i).getFirstName());
+//				listPersons.get(i).setFamilyMembers(family);
             }
+            i++;
         }
-        return listEmailsByCity;
+        return family;
     }
 
-    public CoveredPeople  getPeopleCoveredByFirestation(String station){
-        CoveredPeople coveredPeople=new CoveredPeople();
-       List<Firestation>firestationList= firestationRepository.findAllFirestation();
-       List<String>address=new ArrayList<>();
-       for(Firestation f:firestationList){
-           if(f.getStation().equals(station)){
-               address.add(f.getAddress());
-           }
-       }
-       coveredPeople.setPeople(new ArrayList<>());
-       for (Person p:personRepository.findAllPerson()){
-           if(address.contains(p.getAddress())){
-               PersonSummray summray=new PersonSummray();
-               summray.setFirstName(p.getFirstName());
-
-               coveredPeople.getPeople().add(summray);
-           }
-       }
-
-    }
 
 }
 
@@ -128,23 +104,3 @@ public class PersonService {
 
 
 
-//    public CoveredPeople  getPeopleCoveredByFirestation(String station){
-//        CoveredPeople coveredPeople=new CoveredPeople();
-//        List<Firestation>firestationList= firestationRepository.findAllFirestation();
-//        List<String>address=new ArrayList<>();
-//        for(Firestation f:firestationList){
-//            if(f.getStation().equals(station)){
-//                address.add(f.getAddress());
-//            }
-//        }
-//        coveredPeople.setPeople(new ArrayList<>());
-//        for (Person p:personRepository.findAllPerson()){
-//            if(address.contains(p.getAddress())){
-//                PersonSummray summray=new PersonSummray();
-//                summray.setFirstName(p.getFirstName());
-//
-//                coveredPeople.getPeople().add(summray);
-//            }
-//        }
-//
-//    }

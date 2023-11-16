@@ -47,11 +47,10 @@ public class FirestationController {
     }
 
     @GetMapping("/fire")
-    public List<Firestation> findByAddress(@RequestParam String address){
-        logger.info("getting station of {}", address);
-      return   firestationService.findByAddress(address);
+    public List<Firestation> findByAddress(@RequestParam String station){
+        logger.info("getting station of {}", station);
+      return   firestationService.findByAddress(station);
      // return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
 }

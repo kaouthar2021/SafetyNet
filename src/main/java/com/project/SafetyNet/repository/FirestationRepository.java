@@ -1,6 +1,4 @@
 package com.project.SafetyNet.repository;
-
-import com.project.SafetyNet.exception.RessourceNotFoundException;
 import com.project.SafetyNet.model.Firestation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

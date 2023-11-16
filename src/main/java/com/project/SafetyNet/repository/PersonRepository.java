@@ -1,14 +1,8 @@
 package com.project.SafetyNet.repository;
-import com.project.SafetyNet.controller.dto.PersonSummray;
 import com.project.SafetyNet.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
 import java.util.List;
-
-
-
 @Repository
 public class PersonRepository {
     @Autowired
@@ -20,15 +14,14 @@ public class PersonRepository {
     }
 
     public Person addPerson(Person person) {
-        this.dataRepository.getData().getPersons() .add(person);
+        this.dataRepository.getData().getPersons().add(person);
         return person;
 
     }
 
-    public Person updatePerson(String firstName, String lastName ,Person personToUpdate) {
-        for (Person p :  this.dataRepository.getData().getPersons()) {
-            if (p.getFirstName().equals(firstName) && p.getLastName().equals(lastName))
-            {
+    public Person updatePerson(String firstName, String lastName, Person personToUpdate) {
+        for (Person p : this.dataRepository.getData().getPersons()) {
+            if (p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)) {
                 p.setAddress(personToUpdate.getAddress());
                 p.setCity(personToUpdate.getCity());
                 p.setZip(personToUpdate.getZip());
@@ -38,26 +31,23 @@ public class PersonRepository {
         }
         return personToUpdate;
     }
-
-
-
     public void deletePerson(String firstName, String lastName) {
-        Person personToDelete=null;
-        for (Person p :  this.dataRepository.getData().getPersons()) {
+        Person personToDelete = null;
+        for (Person p : this.dataRepository.getData().getPersons()) {
             if (p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)) {
-               personToDelete=p;
+                personToDelete = p;
             }
         }
         this.dataRepository.getData().getPersons().remove(personToDelete);
     }
+    public  Person findFirstNameLastName(String firstName, String lastName){
+        Person personToFind = null;
+        for (Person p : this.dataRepository.getData().getPersons()) {
+            if (p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)) {
+                personToFind = p;
+            }
+        }
+        return personToFind;
+    }
 
-//    public PersonSummray getPersonSummary(){
-//        List<PersonSummray>personSummrayList=new ArrayList<>();
-//        List<Person>personList=this.dataRepository.getData().getPersons();
-//        for (Person person:personList){
-//            personSummrayList.add(person.getFirstName());
-//
-//        }
-//        return ;
-//    }
 }

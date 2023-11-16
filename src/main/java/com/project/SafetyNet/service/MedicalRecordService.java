@@ -4,16 +4,14 @@ import com.project.SafetyNet.repository.MedicalRecordRepository;
 import com.project.SafetyNet.model.MedicalRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MedicalRecordService {
     @Autowired
     private MedicalRecordRepository medicalRecordRepository;
-    public List<MedicalRecord> getAllMedicalRecord(){
+
+    public List<MedicalRecord> getAllMedicalRecord() {
         return medicalRecordRepository.findAllMedicalRecord();
     }
 
@@ -22,7 +20,7 @@ public class MedicalRecordService {
         return medicalRecord;
     }
 
-    public MedicalRecord updateMedicalRecord( String firstName, String lastName,MedicalRecord medicalRecordToUpdate) {
+    public MedicalRecord updateMedicalRecord(String firstName, String lastName, MedicalRecord medicalRecordToUpdate) {
         return medicalRecordRepository.updateMedicalRecord(firstName, lastName, medicalRecordToUpdate);
     }
 
@@ -31,17 +29,29 @@ public class MedicalRecordService {
     }
 
 
-    public List<Object> findByFirstLastName(String firstName, String lastName) {
-        List<Object> MedicalRecordList = new ArrayList<Object>();
+    public String findByFirstLastName(String firstName, String lastName) {
+        String birthday = null;
         for (MedicalRecord m : this.medicalRecordRepository.findAllMedicalRecord()) {
             if (m.getFirstName().equals(firstName) && m.getLastName().equals(lastName))
-                MedicalRecordList.add(m.getBirthdate());
+                birthday = m.getBirthdate();
 
         }
-        return MedicalRecordList;
+        return birthday;
     }
-    public int calculateAgePerson(String birthdate){
-        return medicalRecordRepository.CalculateAgePerson(birthdate);
+
+    public MedicalRecord findByName(String firstName, String lastName) {
+        int i = 0;
+        MedicalRecord medicalRecord = new MedicalRecord();
+        List<MedicalRecord> listMedicalRecords = medicalRecordRepository.findAllMedicalRecord();
+        while (i < listMedicalRecords.size()) {
+            medicalRecord = listMedicalRecords.get(i);
+            if (medicalRecord.getFirstName() != null && medicalRecord.getFirstName().equals(firstName)
+                    && medicalRecord.getLastName().equals(lastName)) {
+                return medicalRecord;
+            }
+            i++;
+        }
+        return null;
     }
 }
 

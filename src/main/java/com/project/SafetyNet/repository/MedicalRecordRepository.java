@@ -51,22 +51,5 @@ public class MedicalRecordRepository {
 
 
 
-    public int CalculateAgePerson(String birthdate) {
-        int age = 0;
-        String date;
-        for (MedicalRecord m : this.dataRepository.getData().getMedicalrecords()) {
-            if (m.getBirthdate().equals(birthdate)) {
-             date= m.getBirthdate();
 
-                DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                LocalDate birthDate =LocalDate.parse(date,df);
-                LocalDate currentDate=LocalDate.now();
-                return age = Period.between(birthDate,currentDate).getYears();
-
-
-            }
-
-        }
-        return age;
-    }
 }
