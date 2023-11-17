@@ -8,4 +8,8 @@ public class Firestation {
     private String station;
 
 
+    public Firestation(String address, String station) {
+        this.address = address;
+        this.station = station;
+    }
 }

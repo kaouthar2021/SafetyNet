@@ -37,6 +37,34 @@
 			<artifactId>jsoniter</artifactId>
 			<version>0.9.23</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>5.3.1</version> <!-- Use the latest version available -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!--<dependency>
+			<groupId>io.github.hakky54</groupId>
+			<artifactId>logcaptor</artifactId>
+			<version>2.7.5</version>
+			<scope>test</scope>
+		</dependency>-->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 
 
 	</dependencies>

@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("SafetyNet/url")
+//@RequestMapping("SafetyNet/url")
 public class URLController {
 
     @Autowired
