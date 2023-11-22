@@ -100,7 +100,7 @@ class PersonControllerTest {
     }
 
     @Test
-    void getFamilyMembers_ShouldReturnListOfFamilyMembers() {
+    void getFamilyMembersTest() {
 
         String firstName = "John";
         String lastName = "Boyd";

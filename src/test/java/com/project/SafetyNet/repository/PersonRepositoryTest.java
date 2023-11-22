@@ -1,73 +1,113 @@
 package com.project.SafetyNet.repository;
 
+import com.project.SafetyNet.model.Data;
 import com.project.SafetyNet.model.Person;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
+@ExtendWith(MockitoExtension.class)
+class PersonRepositoryTest {
 
-@SpringBootTest
-public class PersonRepositoryTest {
-    @Autowired
-    DataRepository dataRepository;
-    @Autowired
-    PersonRepository personRepository;
-  private static List<Person> persons = new ArrayList<>();
-    private Person john;
-    private Person jacob;
-    private Person tenley;
+    @Mock
+    private DataRepository dataRepository;
+
+    @InjectMocks
+    private PersonRepository personRepository;
 
     @BeforeEach
-    private  void setUp() throws IOException {
-        john = new Person(
-                "John",
-                "Boyd",
-                "1509 Culver St",
-                "Culver",
-                "97451",
-                "841-874-6512",
-                "jaboyd@email.com");
-        jacob = new Person(
-                "Jacob",
-                "Boyd",
-                "1509 Culver St",
-                "Culver",
-                "97451",
-                "841-874-6513",
-                "drk@email.com");
+    void setUp() {
 
-        tenley = new Person(
-                "Tenley",
-                "Boyd",
-                "1509 Culver St",
-                "Culver",
-                "97451",
-                "841-874-6512",
-                "tenz@email.com");
-
-        personRepository=new PersonRepository();
-
-    }
-    @Test
-    public void findAllPersonTest() throws Exception{
-        List<Person>personsTest=personRepository.findAllPerson();
-        //assertThat(personsTest).isEqualTo(persons);
-        Assertions.assertEquals(3, personsTest.size());
     }
 
     @Test
-    private void addPersonTest() throws  Exception{
-        Person personsTest = new Person("Silvio", "REA", "Test address", "city", "zip", "phone", "email");
-        personRepository.addPerson(personsTest);
-        persons.add(personsTest);
-        assertThat(persons).contains(personsTest);
+    void testFindAllPerson() {
+        Data data = new Data();
+        List<Person> persons = new ArrayList<>();
+        persons.add(new Person("John", "Doe", "123 Street", "City", "12345", "123-456-7890", "john@example.com"));
+        data.setPersons(persons);
 
+        when(dataRepository.getData()).thenReturn(data);
+
+        List<Person> result = personRepository.findAllPerson();
+
+        assertEquals(persons, result);
     }
+
+    @Test
+    void testAddPerson() {
+        // Mocking the data
+        Data data = new Data();
+        List<Person> persons = new ArrayList<>();
+        data.setPersons(persons);
+
+        when(dataRepository.getData()).thenReturn(data);
+
+        // Testing the method
+        Person personToAdd = new Person("Jane", "Doe", "456 Street", "City", "67890", "987-654-3210", "jane@example.com");
+        Person result = personRepository.addPerson(personToAdd);
+
+        // Verifying the result
+        assertEquals(personToAdd, result);
+        assertEquals(1, persons.size());
+        assertTrue(persons.contains(personToAdd));
+    }
+    @Test
+    void testUpdatePerson() {
+        // Données de test
+        Data data = new Data();
+        List<Person> persons = new ArrayList<>();
+        persons.add(new Person("John", "Doe", "123 Street", "City", "12345", "123-456-7890", "john@example.com"));
+        data.setPersons(persons);
+
+        // Configuration du mock
+        when(dataRepository.getData()).thenReturn(data);
+
+        // Appel de la méthode à tester
+        Person personToUpdate = new Person("John", "Doe", "456 New Street", "New City", "67890", "987-654-3210", "john@example.com");
+        Person result = personRepository.updatePerson("John", "Doe", personToUpdate);
+
+        // Vérification du résultat
+        assertEquals(personToUpdate, result);
+        assertEquals("456 New Street", result.getAddress());
+        assertEquals("New City", result.getCity());
+        assertEquals("67890", result.getZip());
+        assertEquals("987-654-3210", result.getPhone());
+        assertEquals("john@example.com", result.getEmail());
+
+        // Vérification que les méthodes du mock ont été appelées correctement
+        verify(dataRepository, times(1)).getData();
+    }
+
+    @Test
+    void testDeletePerson() {
+        // Données de test
+        Data data = new Data();
+        List<Person> persons = new ArrayList<>();
+        persons.add(new Person("John", "Doe", "123 Street", "City", "12345", "123-456-7890", "john@example.com"));
+        data.setPersons(persons);
+
+        // Configuration du mock
+        when(dataRepository.getData()).thenReturn(data);
+
+        // Appel de la méthode à tester
+        personRepository.deletePerson("John", "Doe");
+
+        // Vérification du résultat
+        assertEquals(0, data.getPersons().size());
+
+        // Vérification que les méthodes du mock ont été appelées correctement
+        verify(dataRepository, times(2)).getData();
+    }
+
 }

@@ -64,9 +64,11 @@ public class PersonService {
             personRepository.deletePerson(firstName, lastName);
         }else
             logger.error("the person don't exist");
-        throw new RessourceNotFoundException("the person to delete don't exist");
+      //  throw new RessourceNotFoundException("the person to delete don't exist");
 
     }
+
+
     public List<String> getFamilyMembers(String firstName, String lastName) {
         int i = 0;
          List<Person> listPersons = personRepository.findAllPerson();

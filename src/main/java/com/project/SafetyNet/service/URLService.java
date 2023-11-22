@@ -32,7 +32,7 @@ public class URLService {
     private PersonService personService;
     @Autowired
     private MedicalRecordService medicalRecordService;
-    private int calculateAgePerson(String birthdate) {
+    public int calculateAgePerson(String birthdate) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate birthDate =LocalDate.parse(birthdate,df);
         LocalDate currentDate=LocalDate.now();

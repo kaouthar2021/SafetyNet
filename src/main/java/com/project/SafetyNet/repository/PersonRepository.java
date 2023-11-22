@@ -1,4 +1,5 @@
 package com.project.SafetyNet.repository;
+import com.project.SafetyNet.exception.RessourceNotFoundException;
 import com.project.SafetyNet.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,8 @@ public class PersonRepository {
         }
         this.dataRepository.getData().getPersons().remove(personToDelete);
     }
+
+
     public  Person findFirstNameLastName(String firstName, String lastName){
         Person personToFind = null;
         for (Person p : this.dataRepository.getData().getPersons()) {

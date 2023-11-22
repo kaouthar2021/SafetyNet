@@ -12,4 +12,7 @@ public class Firestation {
         this.address = address;
         this.station = station;
     }
+    public Firestation() {
+
+    }
 }
