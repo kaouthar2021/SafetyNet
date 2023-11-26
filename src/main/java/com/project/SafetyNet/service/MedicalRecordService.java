@@ -29,15 +29,7 @@ public class MedicalRecordService {
     }
 
 
-//    public String findByFirstLastName(String firstName, String lastName) {
-//        String birthday = null;
-//        for (MedicalRecord m : this.medicalRecordRepository.findAllMedicalRecord()) {
-//            if (m.getFirstName().equals(firstName) && m.getLastName().equals(lastName))
-//                birthday = m.getBirthdate();
-//
-//        }
-//        return birthday;
-//    }
+
 
 
 }

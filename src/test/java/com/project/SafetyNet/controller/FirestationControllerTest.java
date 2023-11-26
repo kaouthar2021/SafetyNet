@@ -95,19 +95,5 @@ public class FirestationControllerTest {
         verify(firestationService, times(1)).deleteFirestation(eq("1509 Culver St"));
     }
 
-//    @Test
-//    void findByAddressTest() throws Exception {
-//        String station = "1";
-//        List<Firestation> firestations = Arrays.asList(
-//                new Firestation("29 15th St", "2"),
-//                new Firestation("1509 Culver St", "3")
-//        );
-//        when(firestationService.findByAddress(eq(station))).thenReturn(firestations);
-//
-//        mockMvc.perform(get("/SafetyNet/firestation/fire")
-//                        .param("station", station))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$").isArray())
-//                .andExpect(jsonPath("$.length()").value(firestations.size()));
-//    }
+
 }

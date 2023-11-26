@@ -33,15 +33,6 @@ public class FirestationService {
         firestationRepository.deleteFirestation(address);
     }
 
-//     public List<Firestation> findByAddress(String station) {
-//        List<Firestation> FirestationList = new ArrayList<Firestation>();
-//        for (Firestation f : this.firestationRepository.findAllFirestation()) {
-//            if (f.getStation().equals(station)) {
-//                FirestationList.add(f);
-//            }
-//        }
-//        return FirestationList;
-//
-//    }
+
 
 }
