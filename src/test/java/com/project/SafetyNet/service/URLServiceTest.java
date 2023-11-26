@@ -111,42 +111,40 @@ class URLServiceTest {
         verify(personRepository, times(1)).findAllPerson();
       //  verify(medicalRecordRepository, times(1)).findAllMedicalRecord();
     }
-//    @Test
-//    void testGetChildByAddress() {
-//        // Mock data
-//        String address = "1509 Culver St";
-//
-////        Person person = new Person("John", "Boyd", "1509 Culver St", "Culver", "97451", "841-874-6512", "jaboyd@email.com");
-////        MedicalRecord medicalRecord = new MedicalRecord("John", "Boyd", "03/06/1984",
-////                Arrays.asList("aznol:350mg", "hydrapermazol:100mg"),
-////                Arrays.asList("illisoxian"));
-////
-////        List<Person> people = Arrays.asList(person);
-////        List<MedicalRecord> medicalRecords = Arrays.asList(medicalRecord);
-//
-//        // Mock repository calls
-//        when(personRepository.findAllPerson()).thenReturn(persons);
-//        when(medicalRecordRepository.findAllMedicalRecord()).thenReturn(medicalRecords);
-//        when(personService.getFamilyMembers("John", "Boyd")).thenReturn(Arrays.asList("FamilyMember1", "FamilyMember2"));
-//
-//        // Test the service method
-//        List<ChildDto> result = urlService.getChildByAddress(address);
-//
-//        // Verify the results
-//        assertEquals(1, result.size());
-//        ChildDto childDto = result.get(0); // Utiliser l'index 0 car les indices commencent à 0
-//        assertEquals("John", childDto.getFirstName());
-//        assertEquals("Boyd", childDto.getLastName());
-//        assertEquals(urlService.calculateAgePerson("03/06/1984"), childDto.getAge());
-//        assertEquals(Arrays.asList("FamilyMember1", "FamilyMember2"), childDto.getFamily());
-//        // Vérification que les méthodes mockées ont été appelées correctement
-//        verify(personRepository, times(1)).findAllPerson();
-//        verify(medicalRecordRepository, times(1)).findAllMedicalRecord();
-//        verify(personService, times(1)).getFamilyMembers("John", "Boyd");
-//
-//
-//    }
 
+
+    @Test
+    void testGetChildByAddress() {
+        // Mock des données
+        String address = "123 Main St";
+        String firstName = "John";
+        String lastName = "Doe";
+        String birthdate = "01/01/2010";
+
+        // Création d'un objet MedicalRecord pour un enfant
+        MedicalRecord medicalRecord = new MedicalRecord(firstName, lastName, birthdate, null, null);
+
+        // Création d'un objet Person pour un enfant
+        Person child = new Person(firstName, lastName, address, null, null, null, null);
+
+        // Configurer le comportement du mock pour la recherche des personnes
+        when(personRepository.findAllPerson()).thenReturn(Arrays.asList(child));
+
+        // Configurer le comportement du mock pour la recherche des dossiers médicaux
+        when(medicalRecordRepository.findAllMedicalRecord()).thenReturn(Arrays.asList(medicalRecord));
+
+        // Appel de la méthode à tester
+        List<ChildDto> result = urlService.getChildByAddress(address);
+
+        // Vérification du résultat
+        assertEquals(1, result.size());
+        ChildDto childDto = result.get(0);
+        assertEquals(firstName, childDto.getFirstName());
+        assertEquals(lastName, childDto.getLastName());
+        assertEquals(urlService.calculateAgePerson(birthdate), childDto.getAge());
+
+
+    }
 
     @Test
     void testGetPhoneByStation() {

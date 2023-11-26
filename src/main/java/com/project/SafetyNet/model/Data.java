@@ -2,7 +2,7 @@ package com.project.SafetyNet.model;
 
 import java.util.ArrayList;
 import java.util.List;
-@lombok.Data
+
 public class Data {
     private List<Person> persons;
     private List<Firestation>firestations;

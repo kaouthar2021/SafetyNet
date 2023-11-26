@@ -45,15 +45,11 @@ public class MedicalRecordController {
         medicalRecordService.deleteMedicalRecord(firstName,lastName);
         return new ResponseEntity<>( HttpStatus.GONE);
     }
-    @GetMapping("/medical")
-    public String findByFirstLastName( @RequestParam String  firstName , @RequestParam String lastName) {
-        logger.info("get medicalRecord {} {}", firstName,lastName);
-      return   medicalRecordService.findByFirstLastName(firstName,lastName);
-       // return new ResponseEntity<>( HttpStatus.OK);
-    }
-    @GetMapping("/med")
-    public MedicalRecord findByName(@RequestParam String  firstName , @RequestParam String lastName){
-        return medicalRecordService.findByName(firstName,lastName);
-    }
+//    @GetMapping("/medical")
+//    public String findByFirstLastName( @RequestParam String  firstName , @RequestParam String lastName) {
+//        logger.info("get medicalRecord {} {}", firstName,lastName);
+//      return   medicalRecordService.findByFirstLastName(firstName,lastName);
+//       // return new ResponseEntity<>( HttpStatus.OK);
+//    }
 
 }

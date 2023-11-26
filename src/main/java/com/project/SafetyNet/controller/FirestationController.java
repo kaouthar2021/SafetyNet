@@ -46,11 +46,11 @@ public class FirestationController {
         return new ResponseEntity<>( HttpStatus.GONE);
     }
 
-    @GetMapping("/fire")
-    public List<Firestation> findByAddress(@RequestParam String station){
-        logger.info("getting station of {}", station);
-      return   firestationService.findByAddress(station);
-     // return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @GetMapping("/fire")
+//    public List<Firestation> findByAddress(@RequestParam String station){
+//        logger.info("getting station of {}", station);
+//      return   firestationService.findByAddress(station);
+//     // return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
 }

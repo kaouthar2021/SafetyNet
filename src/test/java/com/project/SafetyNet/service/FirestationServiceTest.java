@@ -74,16 +74,16 @@ class FirestationServiceTest {
         verify(firestationRepository, times(1)).deleteFirestation("1509 Culver St");
     }
 
-    @Test
-    void findByAddressTest() {
-        String station = "1";
-        List<Firestation> firestations = new ArrayList<>();
-        when(firestationRepository.findAllFirestation()).thenReturn(firestations);
-
-        List<Firestation> result = firestationService.findByAddress(station);
-
-
-        verify(firestationRepository, times(1)).findAllFirestation();
-        assertEquals(firestations, result);
-    }
+//    @Test
+//    void findByAddressTest() {
+//        String station = "1";
+//        List<Firestation> firestations = new ArrayList<>();
+//        when(firestationRepository.findAllFirestation()).thenReturn(firestations);
+//
+//        List<Firestation> result = firestationService.findByAddress(station);
+//
+//
+//        verify(firestationRepository, times(1)).findAllFirestation();
+//        assertEquals(firestations, result);
+//    }
 }

@@ -76,19 +76,19 @@ class MedicalRecordServiceTest {
 
         verify(medicalRecordRepository, times(1)).deleteMedicalRepository("John", "Boyd");
     }
-
-    @Test
-    void findByFirstLastName() {
-        String firstName = "John";
-        String lastName = "Boyd";
-
-        List<MedicalRecord> medicalRecords = new ArrayList<>();
-
-        when(medicalRecordRepository.findAllMedicalRecord()).thenReturn(medicalRecords);
-        String result = medicalRecordService.findByFirstLastName(firstName, lastName);
-
-        verify(medicalRecordRepository, times(1)).findAllMedicalRecord();
-    }
+//
+//    @Test
+//    void findByFirstLastName() {
+//        String firstName = "John";
+//        String lastName = "Boyd";
+//
+//        List<MedicalRecord> medicalRecords = new ArrayList<>();
+//
+//        when(medicalRecordRepository.findAllMedicalRecord()).thenReturn(medicalRecords);
+//        String result = medicalRecordService.findByFirstLastName(firstName, lastName);
+//
+//        verify(medicalRecordRepository, times(1)).findAllMedicalRecord();
+//    }
 
 
 }

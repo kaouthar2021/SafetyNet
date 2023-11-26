@@ -29,29 +29,16 @@ public class MedicalRecordService {
     }
 
 
-    public String findByFirstLastName(String firstName, String lastName) {
-        String birthday = null;
-        for (MedicalRecord m : this.medicalRecordRepository.findAllMedicalRecord()) {
-            if (m.getFirstName().equals(firstName) && m.getLastName().equals(lastName))
-                birthday = m.getBirthdate();
+//    public String findByFirstLastName(String firstName, String lastName) {
+//        String birthday = null;
+//        for (MedicalRecord m : this.medicalRecordRepository.findAllMedicalRecord()) {
+//            if (m.getFirstName().equals(firstName) && m.getLastName().equals(lastName))
+//                birthday = m.getBirthdate();
+//
+//        }
+//        return birthday;
+//    }
 
-        }
-        return birthday;
-    }
 
-    public MedicalRecord findByName(String firstName, String lastName) {
-        int i = 0;
-        MedicalRecord medicalRecord = new MedicalRecord();
-        List<MedicalRecord> listMedicalRecords = medicalRecordRepository.findAllMedicalRecord();
-        while (i < listMedicalRecords.size()) {
-            medicalRecord = listMedicalRecords.get(i);
-            if (medicalRecord.getFirstName() != null && medicalRecord.getFirstName().equals(firstName)
-                    && medicalRecord.getLastName().equals(lastName)) {
-                return medicalRecord;
-            }
-            i++;
-        }
-        return null;
-    }
 }
 

@@ -88,16 +88,16 @@ class MedicalRecordControllerTest {
                        .andExpect(status().isGone());
 
     }
-    @Test
-    void findByFirstLastNameTest() throws Exception {
-        String firstName = "Jimmy";
-        String lastName = "Sax";
-
-        mockMvc.perform(get("/SafetyNet/medicalRecord/medical")
-                .param("firstName", "Jimmy")
-                .param("lastName", "Sax"))
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    void findByFirstLastNameTest() throws Exception {
+//        String firstName = "Jimmy";
+//        String lastName = "Sax";
+//
+//        mockMvc.perform(get("/SafetyNet/medicalRecord/medical")
+//                .param("firstName", "Jimmy")
+//                .param("lastName", "Sax"))
+//                .andExpect(status().isOk());
+//    }
 
    }
 

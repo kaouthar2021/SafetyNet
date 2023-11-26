@@ -43,14 +43,14 @@ public class PersonRepository {
     }
 
 
-    public  Person findFirstNameLastName(String firstName, String lastName){
-        Person personToFind = null;
-        for (Person p : this.dataRepository.getData().getPersons()) {
-            if (p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)) {
-                personToFind = p;
-            }
-        }
-        return personToFind;
-    }
+//    public  Person findFirstNameLastName(String firstName, String lastName){
+//        Person personToFind = null;
+//        for (Person p : this.dataRepository.getData().getPersons()) {
+//            if (p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)) {
+//                personToFind = p;
+//            }
+//        }
+//        return personToFind;
+//    }
 
 }
