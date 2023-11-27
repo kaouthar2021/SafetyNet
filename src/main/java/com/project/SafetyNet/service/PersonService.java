@@ -59,12 +59,11 @@ public class PersonService {
         return result;
     }
 
-    public void deletePerson(String firstName, String lastName)  throws RessourceNotFoundException {
+    public void deletePerson(String firstName, String lastName)   {
         if(firstName !=null && lastName !=null) {
             personRepository.deletePerson(firstName, lastName);
         }else
             logger.error("the person don't exist");
-      //  throw new RessourceNotFoundException("the person to delete don't exist");
 
     }
 

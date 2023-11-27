@@ -1,5 +1,6 @@
 package com.project.SafetyNet.service;
 
+import com.project.SafetyNet.exception.RessourceNotFoundException;
 import com.project.SafetyNet.repository.MedicalRecordRepository;
 import com.project.SafetyNet.model.MedicalRecord;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +45,7 @@ class MedicalRecordServiceTest {
     }
 
     @Test
-    void addMedicalRecordTest() {
+    void addMedicalRecordTest() throws RessourceNotFoundException {
 
         MedicalRecord medicalRecord = new MedicalRecord();
         when(medicalRecordRepository.addMedicalRecord(medicalRecord)).thenReturn(medicalRecord);
@@ -57,7 +58,7 @@ class MedicalRecordServiceTest {
     }
 
     @Test
-    void updateMedicalRecordTest() {
+    void updateMedicalRecordTest() throws RessourceNotFoundException {
 
         String firstName = "John";
         String lastName = "Boyd";

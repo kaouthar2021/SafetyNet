@@ -1,5 +1,6 @@
 package com.project.SafetyNet.service;
 
+import com.project.SafetyNet.exception.RessourceNotFoundException;
 import com.project.SafetyNet.repository.FirestationRepository;
 import com.project.SafetyNet.model.Firestation;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,7 +43,7 @@ class FirestationServiceTest {
     }
 
     @Test
-    void addFirestationTest() {
+    void addFirestationTest() throws RessourceNotFoundException {
 
         Firestation firestation = new Firestation();
         when(firestationRepository.addFirestation(firestation)).thenReturn(firestation);
@@ -54,7 +55,7 @@ class FirestationServiceTest {
     }
 
     @Test
-    void updateFirestationTest() {
+    void updateFirestationTest() throws RessourceNotFoundException {
 
         String address = "1509 Culver St";
         Firestation firestation = new Firestation();

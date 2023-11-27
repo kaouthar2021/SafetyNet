@@ -1,5 +1,6 @@
 package com.project.SafetyNet.controller;
 
+import com.project.SafetyNet.exception.RessourceNotFoundException;
 import com.project.SafetyNet.service.FirestationService;
 import com.project.SafetyNet.model.Firestation;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public class FirestationController {
 
     @ResponseBody
     @PostMapping()
-    public ResponseEntity<Firestation> addFirestation(@RequestBody Firestation firestation) {
+    public ResponseEntity<Firestation> addFirestation(@RequestBody Firestation firestation) throws RessourceNotFoundException {
 
         firestationService.addFirestation(firestation);
         logger.info("POST /firestation called");
@@ -33,7 +34,7 @@ public class FirestationController {
 
     }
     @PutMapping()
-    public ResponseEntity<Firestation> updateFirestation(@RequestParam String  address , @RequestBody Firestation firestation)  {
+    public ResponseEntity<Firestation> updateFirestation(@RequestParam String  address , @RequestBody Firestation firestation) throws RessourceNotFoundException  {
         logger.info("updating firestation {}", firestation);
         Firestation updateFirestation = firestationService.updateFirestation(address,firestation);
         return new ResponseEntity<Firestation>(updateFirestation, HttpStatus.OK);
