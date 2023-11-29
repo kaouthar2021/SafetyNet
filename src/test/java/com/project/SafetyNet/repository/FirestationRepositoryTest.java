@@ -21,7 +21,7 @@ class FirestationRepositoryTest {
     private DataRepository dataRepository;
 
     @InjectMocks
-    private FirestationRepository firestationRepository;
+    private FirestationRepositoryImpl firestationRepository;
 
     @BeforeEach
     void setUp() {

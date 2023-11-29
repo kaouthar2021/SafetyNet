@@ -1,20 +1,18 @@
 package com.project.SafetyNet.controller;
 
 import com.jsoniter.output.JsonStream;
-import com.project.SafetyNet.controller.MedicalRecordController;
 import com.project.SafetyNet.model.MedicalRecord;
 import com.project.SafetyNet.service.MedicalRecordService;
+import com.project.SafetyNet.service.MedicalRecordServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;

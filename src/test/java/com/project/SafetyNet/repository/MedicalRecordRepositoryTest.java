@@ -2,14 +2,11 @@ package com.project.SafetyNet.repository;
 
 import com.project.SafetyNet.model.Data;
 import com.project.SafetyNet.model.MedicalRecord;
-import com.project.SafetyNet.repository.DataRepository;
-import com.project.SafetyNet.repository.MedicalRecordRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -24,7 +21,7 @@ class MedicalRecordRepositoryTest {
     private DataRepository dataRepository;
 
     @InjectMocks
-    private MedicalRecordRepository medicalRecordRepository;
+    private MedicalRecordRepositoryImpl medicalRecordRepository;
     private static List<MedicalRecord> medicalRecords = new ArrayList<>();
     static {
 

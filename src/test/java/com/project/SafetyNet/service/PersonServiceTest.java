@@ -2,15 +2,13 @@ package com.project.SafetyNet.service;
 
 import com.project.SafetyNet.exception.RessourceNotFoundException;
 import com.project.SafetyNet.model.Person;
-import com.project.SafetyNet.repository.PersonRepository;
+import com.project.SafetyNet.repository.PersonRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ public class PersonServiceTest {
     PersonService personService;
 
     @Mock
-    private PersonRepository personRepository;
+    private PersonRepositoryImpl personRepository;
 
     private List<Person> personList = new ArrayList<>();
 

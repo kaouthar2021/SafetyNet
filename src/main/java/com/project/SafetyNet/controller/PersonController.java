@@ -1,10 +1,10 @@
 package com.project.SafetyNet.controller;
 
 
-import com.project.SafetyNet.controller.dto.CoveredPeople;
 import com.project.SafetyNet.exception.RessourceNotFoundException;
 import com.project.SafetyNet.service.PersonService;
 import com.project.SafetyNet.model.Person;
+import com.project.SafetyNet.service.PersonServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("SafetyNet/persons")
 public class PersonController {
 
-    @Autowired
+   @Autowired
     private PersonService personService;
-
     private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
     @GetMapping()

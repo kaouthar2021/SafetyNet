@@ -1,14 +1,13 @@
 package com.project.SafetyNet.service;
 
 import com.project.SafetyNet.exception.RessourceNotFoundException;
-import com.project.SafetyNet.repository.MedicalRecordRepository;
+import com.project.SafetyNet.repository.MedicalRecordRepositoryImpl;
 import com.project.SafetyNet.model.MedicalRecord;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -22,10 +21,10 @@ import static org.mockito.Mockito.*;
 class MedicalRecordServiceTest {
 
     @Mock
-    private MedicalRecordRepository medicalRecordRepository;
+    private MedicalRecordRepositoryImpl medicalRecordRepository;
 
     @InjectMocks
-    private MedicalRecordService medicalRecordService;
+    private MedicalRecordServiceImpl medicalRecordService;
 
     @BeforeEach
     void setUp() {

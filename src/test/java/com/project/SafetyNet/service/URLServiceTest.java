@@ -4,19 +4,16 @@ import com.project.SafetyNet.controller.dto.*;
 import com.project.SafetyNet.model.Firestation;
 import com.project.SafetyNet.model.MedicalRecord;
 import com.project.SafetyNet.model.Person;
-import com.project.SafetyNet.repository.FirestationRepository;
-import com.project.SafetyNet.repository.MedicalRecordRepository;
-import com.project.SafetyNet.repository.PersonRepository;
+import com.project.SafetyNet.repository.FirestationRepositoryImpl;
+import com.project.SafetyNet.repository.MedicalRecordRepositoryImpl;
+import com.project.SafetyNet.repository.PersonRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,25 +24,25 @@ import static org.mockito.Mockito.*;
 class URLServiceTest {
 
     @Mock
-    private PersonRepository personRepository;
+    private PersonRepositoryImpl personRepository;
 
     @Mock
-    private MedicalRecordRepository medicalRecordRepository;
+    private MedicalRecordRepositoryImpl medicalRecordRepository;
 
     @Mock
-    private FirestationRepository firestationRepository;
+    private FirestationRepositoryImpl firestationRepository;
 
     @Mock
-    private FirestationService firestationService;
+    private FirestationServiceImpl firestationService;
 
     @Mock
     private PersonService personService;
 
     @Mock
-    private MedicalRecordService medicalRecordService;
+    private MedicalRecordServiceImpl medicalRecordService;
 
     @InjectMocks
-    private URLService urlService;
+    private URLServiceImpl urlService;
     private static List<Person> persons = new ArrayList<>();
     static {
         persons.add(

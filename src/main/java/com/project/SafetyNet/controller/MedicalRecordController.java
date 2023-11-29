@@ -2,6 +2,7 @@ package com.project.SafetyNet.controller;
 
 import com.project.SafetyNet.exception.RessourceNotFoundException;
 import com.project.SafetyNet.service.MedicalRecordService;
+import com.project.SafetyNet.service.MedicalRecordServiceImpl;
 import com.project.SafetyNet.model.MedicalRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
