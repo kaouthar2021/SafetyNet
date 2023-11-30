@@ -19,12 +19,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PersonServiceTest {
+public class PersonServiceImplTest {
     @Autowired
     MockMvc mockMvc;
 
     @InjectMocks
-    PersonService personService;
+    PersonServiceImpl personService;
 
     @Mock
     private PersonRepositoryImpl personRepository;

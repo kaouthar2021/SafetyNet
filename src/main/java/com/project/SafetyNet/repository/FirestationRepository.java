@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface FirestationRepository {
-    List<Firestation> FirestationList = new ArrayList<>();
     List<Firestation> findAllFirestation();
     Firestation addFirestation(Firestation firestation);
     Firestation updateFirestation(String address, Firestation firestationToUpdate);

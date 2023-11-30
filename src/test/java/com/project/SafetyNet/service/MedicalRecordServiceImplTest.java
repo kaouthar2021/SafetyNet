@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class MedicalRecordServiceTest {
+class MedicalRecordServiceImplTest {
 
     @Mock
     private MedicalRecordRepositoryImpl medicalRecordRepository;

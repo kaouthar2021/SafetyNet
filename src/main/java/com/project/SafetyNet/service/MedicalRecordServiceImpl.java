@@ -17,6 +17,9 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     private MedicalRecordRepository medicalRecordRepository;
     @Autowired
     static final Logger logger = LogManager.getLogger(MedicalRecordServiceImpl.class);
+    public MedicalRecordServiceImpl(MedicalRecordRepository medicalRecordRepository) {
+        this.medicalRecordRepository = medicalRecordRepository;
+    }
 
     public List<MedicalRecord> getAllMedicalRecord() {
         return medicalRecordRepository.findAllMedicalRecord();

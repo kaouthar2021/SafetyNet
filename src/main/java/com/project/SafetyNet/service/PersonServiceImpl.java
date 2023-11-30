@@ -18,18 +18,10 @@ import java.util.List;
 
 @Service
 public class PersonServiceImpl implements PersonService {
+    static final Logger logger = LogManager.getLogger(PersonService.class);
     @Autowired
     private PersonRepository personRepository;
-    @Autowired
-    private MedicalRecordRepositoryImpl medicalRecordRepository;
-    @Autowired
-    private FirestationRepositoryImpl firestationRepository;
-    @Autowired
-    private FirestationServiceImpl firestationService;
-    @Autowired
-    private MedicalRecordServiceImpl medicalRecordService;
-    @Autowired
-    static final Logger logger = LogManager.getLogger(PersonService.class);
+
 
     public PersonServiceImpl(PersonRepositoryImpl personRepository) {
         this.personRepository = personRepository;

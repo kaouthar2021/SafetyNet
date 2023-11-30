@@ -20,6 +20,10 @@ public class FirestationServiceImpl implements FirestationService {
 
     private String address;
 
+    public FirestationServiceImpl(FirestationRepository firestationRepository) {
+        this.firestationRepository = firestationRepository;
+    }
+
     public List<Firestation> getAllFirestation(){
         return firestationRepository.findAllFirestation();
     }
